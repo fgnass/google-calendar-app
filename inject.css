@@ -1,3 +1,18 @@
 input, textarea, keygen, select, option, button {
   font-family: sans-serif;
 }
+
+#gb {
+  /* make room for mac traffic lights */
+  padding-left: 80px;
+}
+
+#gb .gb_yc.gb_Td {
+  /* hide burger menu and logo */
+  display: none;
+}
+
+#gb .gb_Bd.gb_8d {
+  /* always use compact header */
+  padding: 4px;
+}

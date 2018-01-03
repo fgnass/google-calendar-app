@@ -12,12 +12,15 @@ app.on('window-all-closed', () => {
 app.on('ready', () => {
   win = new BrowserWindow({
     width: 1024,
-    height: 768
+    height: 768,
+    titleBarStyle: 'hidden-inset'
   });
+  const wc = win.webContents;
 
   var template = [{
-    label: 'Gmail',
+    label: 'Google Calendar',
     submenu: [
+      { label: 'Toggle Sidebar', click: () => { wc.executeJavaScript(`document.querySelector('.gb_ec').click()`) }},
       { label: 'Quit', accelerator: 'Command+Q', click: () => { app.quit(); }},
       { label: 'Developer Tools', accelerator: 'Command+Alt+J', click: () => { win.openDevTools(); }}
     ]}, {
@@ -34,8 +37,6 @@ app.on('ready', () => {
   ];
 
   Menu.setApplicationMenu(Menu.buildFromTemplate(template));
-
-  const wc = win.webContents;
 
   wc.on('new-window', (ev, url, name) => {
     ev.preventDefault();
