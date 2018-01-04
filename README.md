@@ -1,7 +1,9 @@
 # Google Calendar packaged as electron app
 
-This is a very thin wrapper around the Google Calendar web interface built with
+Thin wrapper around the Google Calendar web interface built with
 [electron](http://electron.atom.io/).
+
+![Screenshot](./screenshot.png)
 
 ## Building
 
