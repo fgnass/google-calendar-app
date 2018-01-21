@@ -6,7 +6,7 @@ let win = null;
 
 // Quit when all windows are closed.
 app.on('window-all-closed', () => {
-    app.quit();
+  app.quit();
 });
 
 app.on('ready', () => {
@@ -21,30 +21,50 @@ app.on('ready', () => {
     return () => {
       wc.sendInputEvent({ type: 'char', keyCode: 'Esc' });
       wc.sendInputEvent({ type: 'char', keyCode });
-    }
+    };
   }
 
   function click(selector) {
     return () => {
       wc.executeJavaScript(`document.querySelector('${selector}').click()`);
-    }
+    };
   }
-  
+
   var template = [
     {
       label: 'Google Calendar',
       submenu: [
-        { label: 'Settings', accelerator: 'Command+,', click: sendEscape('s')},
-        { label: 'Quit', accelerator: 'Command+Q', click: () => { app.quit(); }},
-        { label: 'Developer Tools', accelerator: 'Command+Alt+J', click: () => { win.openDevTools(); }}
+        { label: 'Settings', accelerator: 'Command+,', click: sendEscape('s') },
+        {
+          label: 'Quit',
+          accelerator: 'Command+Q',
+          click: () => {
+            app.quit();
+          }
+        },
+        {
+          label: 'Developer Tools',
+          accelerator: 'Command+Alt+J',
+          click: () => {
+            win.openDevTools();
+          }
+        }
       ]
     },
     {
       label: 'Edit',
       submenu: [
-        { label: 'New Event', accelerator: 'Command+N', click: sendEscape('c') },
+        {
+          label: 'New Event',
+          accelerator: 'Command+N',
+          click: sendEscape('c')
+        },
         { label: 'Find', accelerator: 'Command+F', click: sendEscape('/') },
-        { label: 'Goto to Today', accelerator: 'Command+T', click: sendEscape('t') },
+        {
+          label: 'Goto to Today',
+          accelerator: 'Command+T',
+          click: sendEscape('t')
+        },
         { type: 'separator' },
         { label: 'Undo', accelerator: 'Command+Z', selector: 'undo:' },
         { label: 'Redo', accelerator: 'Shift+Command+Z', selector: 'redo:' },
@@ -52,20 +72,48 @@ app.on('ready', () => {
         { label: 'Cut', accelerator: 'Command+X', selector: 'cut:' },
         { label: 'Copy', accelerator: 'Command+C', selector: 'copy:' },
         { label: 'Paste', accelerator: 'Command+V', selector: 'paste:' },
-        { label: 'Select All', accelerator: 'Command+A', selector: 'selectAll:' }
+        {
+          label: 'Select All',
+          accelerator: 'Command+A',
+          selector: 'selectAll:'
+        }
       ]
     },
     {
       label: 'View',
       submenu: [
         { label: 'Day View', accelerator: 'Command+1', click: sendEscape('1') },
-        { label: 'Week View', accelerator: 'Command+2', click: sendEscape('2') },
-        { label: 'Month View', accelerator: 'Command+3', click: sendEscape('3') },
-        { label: 'Custom View', accelerator: 'Command+4', click: sendEscape('4') },
-        { label: 'Schedule View', accelerator: 'Command+5', click: sendEscape('5') },
-        { label: 'Year View', accelerator: 'Command+6', click: sendEscape('6') },
+        {
+          label: 'Week View',
+          accelerator: 'Command+2',
+          click: sendEscape('2')
+        },
+        {
+          label: 'Month View',
+          accelerator: 'Command+3',
+          click: sendEscape('3')
+        },
+        {
+          label: 'Custom View',
+          accelerator: 'Command+4',
+          click: sendEscape('4')
+        },
+        {
+          label: 'Schedule View',
+          accelerator: 'Command+5',
+          click: sendEscape('5')
+        },
+        {
+          label: 'Year View',
+          accelerator: 'Command+6',
+          click: sendEscape('6')
+        },
         { type: 'separator' },
-        { label: 'Toggle Sidebar', accelerator: 'Command+.', click: click('.gb_ec') }
+        {
+          label: 'Toggle Sidebar',
+          accelerator: 'Command+.',
+          click: click('.gb_ec')
+        }
       ]
     }
   ];
@@ -77,8 +125,7 @@ app.on('ready', () => {
     if (url == 'about:blank') {
       // Create a hidden window (for Hangouts)
       ev.newGuest = new BrowserWindow({ show: false });
-    }
-    else {
+    } else {
       // Open URLs in the default browser
       shell.openExternal(url);
     }

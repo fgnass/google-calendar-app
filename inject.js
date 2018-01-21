@@ -5,11 +5,11 @@
  */
 function patch(win) {
   var _N = win.Notification;
-  var N = win.Notification = function(title, opts) {
+  var N = (win.Notification = function(title, opts) {
     console.log(title, opts);
     opts.icon = null;
     return new _N(title, opts);
-  }
+  });
   N.prototype = _N.prototype;
   N.permission = _N.permission;
   N.requestPermission = _N.requestPermission;
@@ -17,6 +17,8 @@ function patch(win) {
 
 // Monkey-patch the main window as well as all iframes
 patch(window);
-Array.prototype.slice.call(document.querySelectorAll('iframe')).forEach(function(f) {
-  if (~f.src.indexOf(window.location.origin)) patch(f.contentWindow);
-});
+Array.prototype.slice
+  .call(document.querySelectorAll('iframe'))
+  .forEach(function(f) {
+    if (~f.src.indexOf(window.location.origin)) patch(f.contentWindow);
+  });

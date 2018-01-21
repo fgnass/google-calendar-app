@@ -9,11 +9,16 @@
   "license": "Unlicense",
   "devDependencies": {
     "electron": "1.7.10",
-    "electron-packager": "^10.1.1"
+    "electron-packager": "^10.1.1",
+    "eslint": "^4.16.0",
+    "eslint-config-prettier": "^2.9.0",
+    "eslint-plugin-prettier": "^2.5.0",
+    "prettier": "^1.10.2"
   },
   "scripts": {
     "pack-icons": "iconutil -c icns icon.iconset",
     "pack-osx": "electron-packager ./ 'Google Calendar' --overwrite --platform=darwin --arch=x64 --icon=icon.icns",
-    "start": "electron main.js"
+    "start": "electron main.js",
+    "lint": "eslint ."
   }
 }
