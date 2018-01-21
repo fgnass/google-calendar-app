@@ -5,7 +5,11 @@ Thin wrapper around the Google Calendar web interface built with
 
 ![Screenshot](./screenshot.png)
 
-## Building
+## Download
+
+Pre-built binary release for MacOS: [Google-Calendar-v.1.0.0-Mac.zip](https://github.com/fgnass/google-calendar-app/releases/download/v1.0.0/Google-Calendar-v.1.0.0-Mac.zip)
+
+## Build from source
 
 ```
 npm install
