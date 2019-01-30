@@ -13,8 +13,8 @@ app.on('window-all-closed', () => {
 app.on('ready', () => {
   // Load the previous state with fallback to defaults
   let mainWindowState = windowStateKeeper({
-    defaultWidth: 1000,
-    defaultHeight: 800
+    defaultWidth: 1024,
+    defaultHeight: 768
   });
 
   win = new BrowserWindow({
