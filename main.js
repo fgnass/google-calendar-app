@@ -1,5 +1,6 @@
 const { app, BrowserWindow, Menu, shell } = require('electron');
 const fs = require('fs');
+const windowStateKeeper = require('electron-window-state');
 
 // The main window
 let win = null;
@@ -10,11 +11,25 @@ app.on('window-all-closed', () => {
 });
 
 app.on('ready', () => {
+  // Load the previous state with fallback to defaults
+  let mainWindowState = windowStateKeeper({
+    defaultWidth: 1000,
+    defaultHeight: 800
+  });
+
   win = new BrowserWindow({
-    width: 1024,
-    height: 768,
+    'x': mainWindowState.x,
+    'y': mainWindowState.y,
+    'width': mainWindowState.width,
+    'height': mainWindowState.height,
     titleBarStyle: 'hidden-inset'
   });
+
+  // Let us register listeners on the window, so we can update the state
+  // automatically (the listeners will be removed when the window is closed)
+  // and restore the maximized or full screen state
+  mainWindowState.manage(win);
+  
   const wc = win.webContents;
 
   function sendEscape(keyCode) {
