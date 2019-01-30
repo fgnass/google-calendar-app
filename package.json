@@ -20,5 +20,8 @@
     "pack-osx": "electron-packager ./ 'Google Calendar' --overwrite --platform=darwin --arch=x64 --icon=icon.icns",
     "start": "electron main.js",
     "lint": "eslint ."
+  },
+  "dependencies": {
+    "electron-window-state": "^5.0.3"
   }
 }
